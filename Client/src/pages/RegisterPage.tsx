@@ -1,4 +1,46 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { registerUser } from "../services/authService";
+
 function RegisterPage() {
+
+  const navigate = useNavigate();
+
+  const [formData, setFormData] =
+    useState({
+      name: "",
+      email: "",
+      password: "",
+    });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+
+    e.preventDefault();
+
+    try {
+
+      await registerUser(formData);
+
+      navigate("/login");
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center">
 
@@ -8,23 +50,32 @@ function RegisterPage() {
           Register
         </h1>
 
-        <form className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4"
+        >
 
           <input
             type="text"
+            name="name"
             placeholder="Name"
+            onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
           />
 
           <input
             type="email"
+            name="email"
             placeholder="Email"
+            onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
           />
 
           <input
             type="password"
+            name="password"
             placeholder="Password"
+            onChange={handleChange}
             className="w-full p-3 rounded bg-zinc-800"
           />
 
