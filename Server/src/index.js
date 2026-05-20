@@ -4,6 +4,9 @@ import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import taskRoutes
+from "./routes/taskRoutes.js";
+app.use("/api/tasks", taskRoutes);
 
 dotenv.config();
 

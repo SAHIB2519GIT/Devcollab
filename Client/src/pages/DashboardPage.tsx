@@ -9,10 +9,16 @@ import {
 import CreateProjectForm
 from "../components/CreateProjectForm";
 <CreateProjectForm />
+import TaskBoard
+from "../components/TaskBoard";
 
 import ProjectList
 from "../components/ProjectList";
 <ProjectList />
+import ChatBox
+from "../components/ChatBox";
+<TaskBoard />
+<ChatBox />
 function DashboardPage() {
 
   const navigate = useNavigate();
