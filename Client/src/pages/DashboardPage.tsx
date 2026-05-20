@@ -10,6 +10,9 @@ import CreateProjectForm
 from "../components/CreateProjectForm";
 <CreateProjectForm />
 
+import ProjectList
+from "../components/ProjectList";
+<ProjectList />
 function DashboardPage() {
 
   const navigate = useNavigate();

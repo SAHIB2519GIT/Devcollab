@@ -1,12 +1,50 @@
 import { useState } from "react";
 
+import {
+  createProject,
+} from "../services/projectService";
+
+import {
+  useAuthStore,
+} from "../store/authStore";
+
 function CreateProjectForm() {
+
+  const user =
+    useAuthStore((state) => state.user);
 
   const [title, setTitle] =
     useState("");
 
   const [description,
     setDescription] = useState("");
+
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+
+    e.preventDefault();
+
+    try {
+
+      await createProject(
+        {
+          title,
+          description,
+        },
+        user.token
+      );
+
+      alert("Project Created 🚀");
+
+      setTitle("");
+      setDescription("");
+
+    } catch (error) {
+
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-zinc-900 p-6 rounded-xl w-[400px]">
@@ -15,7 +53,10 @@ function CreateProjectForm() {
         Create Project
       </h2>
 
-      <form className="space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4"
+      >
 
         <input
           type="text"
@@ -37,6 +78,7 @@ function CreateProjectForm() {
         />
 
         <button
+          type="submit"
           className="w-full bg-white text-black py-3 rounded"
         >
           Create Project
