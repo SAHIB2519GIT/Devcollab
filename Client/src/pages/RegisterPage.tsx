@@ -34,62 +34,155 @@ function RegisterPage() {
 
       await registerUser(formData);
 
+      alert("Registration Successful 🚀");
+
       navigate("/login");
 
-    } catch (error) {
+    } catch (error: any) {
+
       console.log(error);
+
+      alert(
+        error?.response?.data?.message ||
+        "Registration Failed"
+      );
     }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
 
-      <div className="bg-zinc-900 p-8 rounded-xl w-[400px]">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-black to-blue-950 flex items-center justify-center px-4">
 
-        <h1 className="text-3xl font-bold mb-6">
-          Register
-        </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="
+          bg-zinc-900/90
+          backdrop-blur-md
+          p-10
+          rounded-2xl
+          shadow-2xl
+          w-full
+          max-w-md
+          border
+          border-zinc-800
+        "
+      >
 
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
+        <div className="text-center mb-8">
+
+          <h1 className="text-5xl font-bold text-white mb-3">
+            🚀 DevCollab
+          </h1>
+
+          <p className="text-zinc-400">
+            Create your account and start collaborating
+          </p>
+
+        </div>
+
+        <div className="space-y-5">
 
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Full Name"
+            value={formData.name}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-zinc-800"
+            required
+            className="
+              w-full
+              p-4
+              rounded-xl
+              bg-zinc-800
+              border
+              border-zinc-700
+              text-white
+              focus:outline-none
+              focus:border-blue-500
+            "
           />
 
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Email Address"
+            value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-zinc-800"
+            required
+            className="
+              w-full
+              p-4
+              rounded-xl
+              bg-zinc-800
+              border
+              border-zinc-700
+              text-white
+              focus:outline-none
+              focus:border-blue-500
+            "
           />
 
           <input
             type="password"
             name="password"
             placeholder="Password"
+            value={formData.password}
             onChange={handleChange}
-            className="w-full p-3 rounded bg-zinc-800"
+            required
+            className="
+              w-full
+              p-4
+              rounded-xl
+              bg-zinc-800
+              border
+              border-zinc-700
+              text-white
+              focus:outline-none
+              focus:border-blue-500
+            "
           />
 
           <button
-            className="w-full bg-white text-black py-3 rounded font-semibold"
+            type="submit"
+            className="
+              w-full
+              bg-blue-600
+              hover:bg-blue-700
+              transition
+              text-white
+              py-4
+              rounded-xl
+              font-semibold
+              cursor-pointer
+            "
           >
-            Register
+            Create Account
           </button>
 
-        </form>
+        </div>
 
-      </div>
+        <p className="text-zinc-400 text-center mt-6">
+
+          Already have an account?{" "}
+
+          <span
+            className="
+              text-blue-400
+              hover:text-blue-300
+              cursor-pointer
+              font-semibold
+            "
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </span>
+
+        </p>
+
+      </form>
 
     </div>
+
   );
 }
 

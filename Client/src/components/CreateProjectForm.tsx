@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import {
   createProject,
-} from "../services/projectService.ts";
+} from "../services/projectService";
 
 import {
   useAuthStore,
@@ -35,58 +35,102 @@ function CreateProjectForm() {
         user.token
       );
 
-      alert("Project Created 🚀");
+      alert("Project Created Successfully 🚀");
 
       setTitle("");
       setDescription("");
 
+      window.location.reload();
+
     } catch (error) {
 
       console.log(error);
+
+      alert("Failed to create project");
     }
   };
 
   return (
-    <div className="bg-zinc-900 p-6 rounded-xl w-[400px]">
 
-      <h2 className="text-2xl font-bold mb-4">
-        Create Project
-      </h2>
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5"
+    >
 
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4"
-      >
+      <div>
+
+        <label className="block text-zinc-400 mb-2">
+          Project Title
+        </label>
 
         <input
           type="text"
-          placeholder="Project Title"
+          placeholder="Enter project title"
           value={title}
           onChange={(e) =>
             setTitle(e.target.value)
           }
-          className="w-full p-3 rounded bg-zinc-800"
+          required
+          className="
+            w-full
+            p-4
+            rounded-xl
+            bg-zinc-800
+            border
+            border-zinc-700
+            focus:border-blue-500
+            focus:outline-none
+          "
         />
 
+      </div>
+
+      <div>
+
+        <label className="block text-zinc-400 mb-2">
+          Description
+        </label>
+
         <textarea
-          placeholder="Description"
+          placeholder="Describe your project..."
           value={description}
           onChange={(e) =>
             setDescription(e.target.value)
           }
-          className="w-full p-3 rounded bg-zinc-800"
+          rows={5}
+          required
+          className="
+            w-full
+            p-4
+            rounded-xl
+            bg-zinc-800
+            border
+            border-zinc-700
+            focus:border-blue-500
+            focus:outline-none
+          "
         />
 
-        <button
-          type="submit"
-          className="w-full bg-white text-black py-3 rounded"
-        >
-          Create Project
-        </button>
+      </div>
 
-      </form>
+      <button
+        type="submit"
+        className="
+          w-full
+          bg-blue-600
+          hover:bg-blue-700
+          transition
+          py-4
+          rounded-xl
+          font-semibold
+          text-white
+        "
+      >
+        Create Project 🚀
+      </button>
 
-    </div>
+    </form>
+
   );
 }
 
