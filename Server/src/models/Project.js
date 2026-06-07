@@ -9,11 +9,13 @@ const projectSchema = new mongoose.Schema(
 
     description: {
       type: String,
+      default: "",
     },
 
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
 
     members: [

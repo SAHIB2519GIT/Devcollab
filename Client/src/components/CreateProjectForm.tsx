@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import {
   createProject,
-} from "../services/projectService";
+} from "../services/projectService.ts";
 
 import {
   useAuthStore,
