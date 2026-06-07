@@ -1,11 +1,10 @@
 # DevCollab 🚀
 
-DevCollab is a real-time developer collaboration platform built using the MERN stack and WebSocket architecture.
+DevCollab – A MERN Stack project collaboration platform featuring JWT authentication, project management, protected routes, and MongoDB Atlas integration.
 
 ## Features
 - Authentication & Authorization
 - Project & Task Management
-- Real-Time Chat
 - Code Snippet Sharing
 - Dashboard Analytics
 
